@@ -1,0 +1,108 @@
+stages:
+  - test
+  - build
+  - publish
+
+# test:
+#   stage: test
+#   image:
+#     name: node:14-buster-slim
+#   cache:
+#     - key:
+#         files:
+#           - yarn.lock
+#       paths:
+#         - .yarn-cache/
+#   script:
+#     - npm i -g cross-env
+#     - yarn install --cache-folder .yarn-cache
+#     - cd front
+#     - yarn run test
+
+
+
+
+.build_template: &build_template
+  stage: build
+  # only:
+  #   - xce
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+
+.script_template: &script_template
+  - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+  - if [ ${CI_COMMIT_BRANCH} == "xce" ]; then export TAG="${DOCKER_TAG}-latest"; else export TAG="${DOCKER_TAG}-${CI_COMMIT_SHORT_SHA}"; fi
+  - >-
+    /kaniko/executor
+    --context "${CI_PROJECT_DIR}"
+    --dockerfile "${CI_PROJECT_DIR}/front/Dockerfile"
+    --destination "${CI_REGISTRY_IMAGE}/wa_front:${TAG}"
+    --label=commit=${CI_COMMIT_SHA}
+    --label=branch=${CI_COMMIT_REF_SLUG}
+    --label=pipeline=${CI_PIPELINE_ID}
+    --build-arg=PUSHER_URL=$PUSHER_URL
+    --build-arg=PUSHER_URL=$ADMIN_URL
+    --build-arg=MAPS_URL=$MAPS_URL
+    --build-arg=UPLOADER_URL=$UPLOADER_URL
+    --build-arg=START_ROOM_URL=$START_ROOM_URL
+    --build-arg=JITSI_PRIVATE_MODE=$JITSI_PRIVATE_MODE
+    --build-arg=JITSI_URL=$JITSI_URL
+    --build-arg=STUN_SERVER=$STUN_SERVER
+    --build-arg=TURN_SERVER=$TURN_SERVER
+    --build-arg=TURN_USER=$TURN_SERVER
+    --build-arg=TURN_PASSWORD=$TURN_PASSWORD
+    --build-arg=MAX_USERNAME_LENGTH=$MAX_USERNAME_LENGTH
+    --build-arg=MAX_PER_GROUP=$MAX_PER_GROUP
+    --build-arg=DISABLE_NOTIFICATIONS=$DISABLE_NOTIFICATIONS
+    --build-arg=SKIP_RENDER_OPTIMIZATIONS=$SKIP_RENDER_OPTIMIZATIONS
+    --build-arg=DISPLAY_TERMS_OF_USE=$DISPLAY_TERMS_OF_USE
+    
+
+build_staging:
+  <<: *build_template
+  variables:
+      DOCKER_TAG: staging
+      PUSHER_URL: $PUSHER_URL_STAGING
+      ADMIN_URL: $ADMIN_URL_STAGING
+      MAPS_URL: $MAPS_URL_STAGING
+      UPLOADER_URL: $UPLOADER_URL_STAGING
+      START_ROOM_URL: $START_ROOM_URL_STAGING
+      JITSI_PRIVATE_MODE: $JITSI_PRIVATE_MODE
+      JITSI_URL: $JITSI_URL
+      STUN_SERVER: $STUN_SERVER
+      TURN_SERVER: $TURN_SERVER
+      TURN_USER: $TURN_USER
+      TURN_PASSWORD: $TURN_PASSWORD
+      MAX_USERNAME_LENGTH: 20
+      MAX_PER_GROUP: 5
+      DISABLE_NOTIFICATIONS: "true"
+      SKIP_RENDER_OPTIMIZATIONS: "false"
+      DISPLAY_TERMS_OF_USE: "false"
+  script:
+    *script_template
+
+
+build_prod:
+  <<: *build_template
+  variables:
+      DOCKER_TAG: staging
+      PUSHER_URL: $PUSHER_URL_PROD
+      ADMIN_URL: $ADMIN_URL_PROD
+      MAPS_URL: $MAPS_URL_PROD
+      UPLOADER_URL: $UPLOADER_URL_PROD
+      START_ROOM_URL: $START_ROOM_URL_PROD
+      JITSI_PRIVATE_MODE: $JITSI_PRIVATE_MODE
+      JITSI_URL: $JITSI_URL
+      STUN_SERVER: $STUN_SERVER
+      TURN_SERVER: $TURN_SERVER
+      TURN_USER: $TURN_USER
+      TURN_PASSWORD: $TURN_PASSWORD
+      MAX_USERNAME_LENGTH: 20
+      MAX_PER_GROUP: 5
+      DISABLE_NOTIFICATIONS: "true"
+      SKIP_RENDER_OPTIMIZATIONS: "false"
+      DISPLAY_TERMS_OF_USE: "false"
+  script:
+    *script_template
+
