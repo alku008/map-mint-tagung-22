@@ -86,7 +86,7 @@ build_staging:
 build_prod:
   <<: *build_template
   variables:
-      DOCKER_TAG: staging
+      DOCKER_TAG: prod
       PUSHER_URL: $PUSHER_URL_PROD
       ADMIN_URL: $ADMIN_URL_PROD
       MAPS_URL: $MAPS_URL_PROD
