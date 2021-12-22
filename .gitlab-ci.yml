@@ -61,12 +61,12 @@ stages:
 build_dev:
   <<: *build_template
   variables:
-      DOCKER_TAG: staging
-      PUSHER_URL: http://dev.exneuland-staging.rc3.world/
-      ADMIN_URL: $ADMIN_URL_STAGING
-      MAPS_URL: $MAPS_URL_STAGING
-      UPLOADER_URL: $UPLOADER_URL_STAGING
-      START_ROOM_URL: $START_ROOM_URL_STAGING
+      DOCKER_TAG: dev
+      PUSHER_URL: $PUSHER_URL_DEV
+      ADMIN_URL: $ADMIN_URL_DEV
+      MAPS_URL: $MAPS_URL_DEV
+      UPLOADER_URL: $UPLOADER_URL_DEV
+      START_ROOM_URL: $START_ROOM_URL_DEV
       JITSI_PRIVATE_MODE: $JITSI_PRIVATE_MODE
       JITSI_URL: $JITSI_URL
       STUN_SERVER: $STUN_SERVER
