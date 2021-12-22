@@ -24,15 +24,13 @@ stages:
 
 .build_template: &build_template
   stage: build
-  only:
-    - xce
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
 
 .script_template: &script_template
   - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-  - if [ ${CI_COMMIT_BRANCH} == "xce" ]; then export TAG="${DOCKER_TAG}-latest"; else export TAG="${DOCKER_TAG}-${CI_COMMIT_SHORT_SHA}"; fi
+  - export TAG="${DOCKER_TAG}-latest"
   - >-
     /kaniko/executor
     --context "${CI_PROJECT_DIR}"
@@ -60,6 +58,9 @@ stages:
     
 build_dev:
   <<: *build_template
+  except:
+    - xce
+    - schedules
   variables:
       DOCKER_TAG: dev
       PUSHER_URL: $PUSHER_URL_DEV
@@ -83,6 +84,8 @@ build_dev:
 
 build_staging:
   <<: *build_template
+  only:
+    - xce
   variables:
       DOCKER_TAG: staging
       PUSHER_URL: $PUSHER_URL_STAGING
@@ -107,6 +110,8 @@ build_staging:
 
 build_prod:
   <<: *build_template
+  only:
+    - web
   variables:
       DOCKER_TAG: prod
       PUSHER_URL: $PUSHER_URL_PROD
