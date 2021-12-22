@@ -58,6 +58,28 @@ stages:
     --build-arg=SKIP_RENDER_OPTIMIZATIONS=$SKIP_RENDER_OPTIMIZATIONS
     --build-arg=DISPLAY_TERMS_OF_USE=$DISPLAY_TERMS_OF_USE
     
+build_dev:
+  <<: *build_template
+  variables:
+      DOCKER_TAG: staging
+      PUSHER_URL: http://dev.exneuland-staging.rc3.world/
+      ADMIN_URL: $ADMIN_URL_STAGING
+      MAPS_URL: $MAPS_URL_STAGING
+      UPLOADER_URL: $UPLOADER_URL_STAGING
+      START_ROOM_URL: $START_ROOM_URL_STAGING
+      JITSI_PRIVATE_MODE: $JITSI_PRIVATE_MODE
+      JITSI_URL: $JITSI_URL
+      STUN_SERVER: $STUN_SERVER
+      TURN_SERVER: $TURN_SERVER
+      TURN_USER: $TURN_USER
+      TURN_PASSWORD: $TURN_PASSWORD
+      MAX_USERNAME_LENGTH: 20
+      MAX_PER_GROUP: 5
+      DISABLE_NOTIFICATIONS: "true"
+      SKIP_RENDER_OPTIMIZATIONS: "false"
+      DISPLAY_TERMS_OF_USE: "false"
+  script:
+    *script_template
 
 build_staging:
   <<: *build_template
