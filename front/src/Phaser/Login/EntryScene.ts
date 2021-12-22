@@ -41,7 +41,7 @@ export class EntryScene extends Scene {
                         new WAError(
                             "Access link incorrect",
                             "Could not find map. Please check your access link.",
-                            "If you want more information, you may contact administrator or contact us at: hello@workadventu.re"
+                            "If you want more information, you may contact administrator or contact us at: rc3-orga@cccv.de"
                         ),
                         this.scene
                     );
@@ -52,7 +52,7 @@ export class EntryScene extends Scene {
                             "You cannot join the World. Try again later" +
                                 (err.response.data ? ". \n\r \n\r" + `${err.response.data}` : "") +
                                 ".",
-                            "If you want more information, you may contact administrator or contact us at: hello@workadventu.re"
+                            "If you want more information, you may contact administrator or contact us at: rc3-orga@cccv.de"
                         ),
                         this.scene
                     );
