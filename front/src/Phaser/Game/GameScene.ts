@@ -2033,7 +2033,7 @@ ${escapedMessage}
         this.scene.start(ErrorSceneName, {
             title: "Banned",
             subTitle: "You were banned from WorkAdventure",
-            message: "If you want more information, you may contact us at: rc3-orga@cccv.de",
+            message: "If you want more information, you may contact us at: world@rc3.world",
         });
     }
 
@@ -2048,14 +2048,14 @@ ${escapedMessage}
             this.scene.start(ErrorSceneName, {
                 title: "Connection rejected",
                 subTitle: "The world you are trying to join is full. Try again later.",
-                message: "If you want more information, you may contact us at: rc3-orga@cccv.de",
+                message: "If you want more information, you may contact us at: world@rc3.world",
             });
         } else {
             this.scene.start(ErrorSceneName, {
                 title: "Connection rejected",
                 subTitle: "You cannot join the World. Try again later. \n\r \n\r Error: " + message + ".",
                 message:
-                    "If you want more information, you may contact administrator or contact us at: rc3-orga@cccv.de",
+                    "If you want more information, you may contact administrator or contact us at: world@rc3.world",
             });
         }
     }
