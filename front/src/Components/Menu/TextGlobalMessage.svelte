@@ -77,5 +77,5 @@
 </section>
 
 <style lang="scss">
-    @import "https://cdn.quilljs.com/1.3.7/quill.snow.css";
+    @import "https://static.rc3.world/contrib/quill.snow.css";
 </style>
