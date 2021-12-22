@@ -136,6 +136,7 @@ class ConnectionManager {
             this.authToken = data.authToken;
             localUserStore.saveUser(this.localUser);
             localUserStore.setAuthToken(this.authToken);
+            localUserStore.setName(data.name);
             analyticsClient.loggedWithToken();
 
             const roomUrl = data.roomUrl;
