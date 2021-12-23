@@ -15,6 +15,7 @@ export const isRegisterData = new tg.IsInterface()
         userUuid: tg.isString,
         textures: tg.isArray(isCharacterTexture),
         authToken: tg.isString,
+        name: tg.isString,
     })
     .withOptionalProperties({
         messages: tg.isArray(tg.isUnknown),

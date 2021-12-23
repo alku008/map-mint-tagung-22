@@ -33,7 +33,7 @@ export class GameManager {
     public async init(scenePlugin: Phaser.Scenes.ScenePlugin): Promise<string> {
         this.scenePlugin = scenePlugin;
         this.startRoom = await connectionManager.initGameConnexion();
-        
+
         //rc3_21: get username from storage one more time after connection to hub was established
         this.playerName = localUserStore.getName();
 
