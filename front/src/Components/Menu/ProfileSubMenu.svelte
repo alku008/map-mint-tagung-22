@@ -61,10 +61,6 @@
 <div class="customize-main">
     <div class="submenu">
         <section>
-            <button type="button" class="nes-btn" on:click|preventDefault={openEditNameScene}>
-                <img src={btnProfileSubMenuIdentity} alt="Edit your name" />
-                <span class="btn-hover">Edit your name</span>
-            </button>
             <button type="button" class="nes-btn" on:click|preventDefault={openEditSkinScene}>
                 <Woka userId={-1} placeholderSrc="" width="26px" height="26px" />
                 <span class="btn-hover">Edit your WOKA</span>
