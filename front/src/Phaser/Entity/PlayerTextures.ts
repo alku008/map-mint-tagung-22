@@ -372,18 +372,6 @@ export const ACCESSORIES_RESOURCES: BodyResourceDescriptionListInterface = {
         name: "accessory_25",
         img: "resources/customisation/character_accessories/character_accessories25.png",
     },
-    accessory_26: {
-        name: "accessory_26",
-        img: "resources/customisation/character_accessories/character_accessories26.png",
-    },
-    accessory_27: {
-        name: "accessory_27",
-        img: "resources/customisation/character_accessories/character_accessories27.png",
-    },
-    accessory_28: {
-        name: "accessory_28",
-        img: "resources/customisation/character_accessories/character_accessories28.png",
-    },
     accessory_mate_bottle: {
         name: "accessory_mate_bottle",
         img: "resources/customisation/character_accessories/mate_bottle1.png",
