@@ -127,6 +127,11 @@ export const EYES_RESOURCES: BodyResourceDescriptionListInterface = {
     eyes_28: { name: "eyes_28", img: "resources/customisation/character_eyes/character_eyes28.png" },
     eyes_29: { name: "eyes_29", img: "resources/customisation/character_eyes/character_eyes29.png" },
     eyes_30: { name: "eyes_30", img: "resources/customisation/character_eyes/character_eyes30.png" },
+    eyes_31: { name: "eyes_31", img: "resources/customisation/character_eyes/character_eyes31.png" },
+    eyes_32: { name: "eyes_32", img: "resources/customisation/character_eyes/character_eyes32.png" },
+    eyes_33: { name: "eyes_33", img: "resources/customisation/character_eyes/character_eyes33.png" },
+    eyes_34: { name: "eyes_34", img: "resources/customisation/character_eyes/character_eyes34.png" },
+    eyes_35: { name: "eyes_35", img: "resources/customisation/character_eyes/character_eyes35.png" },
 };
 
 export const HAIR_RESOURCES: BodyResourceDescriptionListInterface = {
