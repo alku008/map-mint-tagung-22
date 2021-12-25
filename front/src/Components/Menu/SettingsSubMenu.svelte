@@ -91,7 +91,7 @@
 
 <div class="settings-main" on:submit|preventDefault={saveSetting}>
     <section>
-        <h3>Game quality</h3>
+        <h3>Game framerate</h3>
         <div class="nes-select is-dark">
             <select bind:value={valueGame}>
                 <option value={120}>{isMobile() ? "High (120 fps)" : "High video quality (120 fps)"}</option>
@@ -104,7 +104,7 @@
         </div>
     </section>
     <section>
-        <h3>Video quality</h3>
+        <h3>Video framerate</h3>
         <div class="nes-select is-dark">
             <select bind:value={valueVideo}>
                 <option value={30}>{isMobile() ? "High (30 fps)" : "High video quality (30 fps)"}</option>
@@ -200,13 +200,13 @@
             }
         }
         section.settings-section-noSaveOption {
-            display: flex;
+            display: grid;
             align-items: center;
             flex-wrap: wrap;
 
             label {
                 flex: 1 1 auto;
-                text-align: center;
+                text-align: left;
                 margin: 0 0 15px;
             }
         }
