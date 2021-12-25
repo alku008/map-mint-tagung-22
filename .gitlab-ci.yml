@@ -55,6 +55,7 @@ stages:
     --build-arg=DISABLE_NOTIFICATIONS=$DISABLE_NOTIFICATIONS
     --build-arg=SKIP_RENDER_OPTIMIZATIONS=$SKIP_RENDER_OPTIMIZATIONS
     --build-arg=DISPLAY_TERMS_OF_USE=$DISPLAY_TERMS_OF_USE
+    --build-arg=CONTACT_URL=$CONTACT_URL
     
 build_dev:
   <<: *build_template
@@ -79,6 +80,7 @@ build_dev:
       DISABLE_NOTIFICATIONS: "true"
       SKIP_RENDER_OPTIMIZATIONS: "false"
       DISPLAY_TERMS_OF_USE: "false"
+      CONTACT_URL: $CONTACT_URL
   script:
     *script_template
 
@@ -104,6 +106,7 @@ build_staging:
       DISABLE_NOTIFICATIONS: "true"
       SKIP_RENDER_OPTIMIZATIONS: "false"
       DISPLAY_TERMS_OF_USE: "false"
+      CONTACT_URL: $CONTACT_URL
   script:
     *script_template
 
@@ -130,6 +133,7 @@ build_prod:
       DISABLE_NOTIFICATIONS: "true"
       SKIP_RENDER_OPTIMIZATIONS: "false"
       DISPLAY_TERMS_OF_USE: "false"
+      CONTACT_URL: $CONTACT_URL
   script:
     *script_template
 
