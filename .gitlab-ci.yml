@@ -40,7 +40,7 @@ stages:
     --label=branch=${CI_COMMIT_REF_SLUG}
     --label=pipeline=${CI_PIPELINE_ID}
     --build-arg=PUSHER_URL=$PUSHER_URL
-    --build-arg=PUSHER_URL=$ADMIN_URL
+    --build-arg=ADMIN_URL=$ADMIN_URL
     --build-arg=MAPS_URL=$MAPS_URL
     --build-arg=UPLOADER_URL=$UPLOADER_URL
     --build-arg=START_ROOM_URL=$START_ROOM_URL
