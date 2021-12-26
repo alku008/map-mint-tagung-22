@@ -59,6 +59,28 @@
             }
         }
     });
+
+    let expandedReportMap = false;
+    let reportMessage = "";
+    let reportErrorHidden = true;
+
+    function toggleReportUI() {
+        expandedReportMap = !expandedReportMap;
+        if (expandedReportMap) {
+            gameManager.getCurrentGameScene().userInputManager.disableControls();
+        } else {
+            gameManager.getCurrentGameScene().userInputManager.restoreControls();
+        }
+    }
+
+    function submitReport() {
+        if (reportMessage === "") {
+            reportErrorHidden = false;
+        } else {
+            reportErrorHidden = true;
+            gameManager.getCurrentGameScene().connection?.emitReportMapMessage(gameScene.roomUrl, reportMessage);
+        }
+    }
 </script>
 
 <div class="about-room-main">
@@ -99,6 +121,18 @@
                 </p>
             {/each}
         </section>
+        <h3 class="nes-pointer hoverable" on:click={toggleReportUI}>
+            Report this map
+        </h3>
+        <section class="report-container-main" hidden={!expandedReportMap}>
+            <p>Send a report message to the administrators of the world about this map. They may later ban the assembly.</p>
+            <label>
+                <span>Your message: </span>
+                <textarea type="text" class="nes-textarea" bind:value={reportMessage} />
+            </label>
+            <p hidden={reportErrorHidden}>Report message cannot to be empty.</p>
+            <button class="nes-btn is-error" on:click={submitReport}>Report this map</button>
+        </section>
     </section>
 </div>
 
@@ -134,6 +168,20 @@
             section.container-overflow {
                 height: calc(100% - 120px);
             }
+        }
+    }
+
+    section.report-container-main {
+        text-align: center;
+
+        textarea {
+            height: clamp(100px, 15vh, 300px);
+        }
+    }
+
+    @media only screen and (max-height: 630px) {
+        section.report-container-main textarea {
+            height: 50px;
         }
     }
 </style>

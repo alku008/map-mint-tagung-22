@@ -23,6 +23,7 @@ import {
     WebRtcSignalToServerMessage,
     WebRtcStartMessage,
     ReportPlayerMessage,
+    ReportMapMessage,
     TeleportMessageMessage,
     QueryJitsiJwtMessage,
     SendJitsiJwtMessage,
@@ -704,6 +705,17 @@ export class RoomConnection implements RoomConnection {
 
         const clientToServerMessage = new ClientToServerMessage();
         clientToServerMessage.setReportplayermessage(reportPlayerMessage);
+
+        this.socket.send(clientToServerMessage.serializeBinary().buffer);
+    }
+
+    public emitReportMapMessage(reportedRoomUrl: string, reportComment: string): void {
+        const reportMapMessage = new ReportMapMessage();
+        reportMapMessage.setReportedroomurl(reportedRoomUrl);
+        reportMapMessage.setReportcomment(reportComment);
+
+        const clientToServerMessage = new ClientToServerMessage();
+        clientToServerMessage.setReportmapmessage(reportMapMessage);
 
         this.socket.send(clientToServerMessage.serializeBinary().buffer);
     }

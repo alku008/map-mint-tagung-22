@@ -70,6 +70,11 @@ message ReportPlayerMessage {
   string reportComment = 2;
 }
 
+message ReportMapMessage {
+  string reportedRoomUrl = 1;
+  string reportComment = 2;
+}
+
 message EmotePromptMessage {
   string emote = 2;
 }
@@ -116,6 +121,7 @@ message ClientToServerMessage {
     FollowRequestMessage followRequestMessage = 15;
     FollowConfirmationMessage followConfirmationMessage = 16;
     FollowAbortMessage followAbortMessage = 17;
+    ReportMapMessage reportMapMessage = 18;
   }
 }
 
@@ -401,6 +407,7 @@ message PusherToBackMessage {
     FollowRequestMessage followRequestMessage = 16;
     FollowConfirmationMessage followConfirmationMessage = 17;
     FollowAbortMessage followAbortMessage = 18;
+    ReportMapMessage reportMapMessage = 19;
   }
 }
 
