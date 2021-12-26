@@ -95,6 +95,26 @@ class AdminApi {
         );
     }
 
+    reportMap(
+        reportedRoomUrl: string,
+        reportedUserComment: string,
+        reporterUserUuid: string,
+        reportWorldSlug: string
+    ) {
+        return Axios.post(
+            `${ADMIN_API_URL}/api/report`,
+            {
+                reportedRoomUrl,
+                reportedUserComment,
+                reporterUserUuid,
+                reportWorldSlug,
+            },
+            {
+                headers: { Authorization: `${ADMIN_API_TOKEN}` },
+            }
+        );
+    }
+
     async verifyBanUser(userUuid: string, ipAddress: string, roomUrl: string): Promise<AdminBannedData> {
         if (!ADMIN_API_URL) {
             return Promise.reject(new Error("No admin backoffice set!"));

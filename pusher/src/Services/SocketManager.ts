@@ -19,6 +19,7 @@ import {
     QueryJitsiJwtMessage,
     RefreshRoomMessage,
     ReportPlayerMessage,
+    ReportMapMessage,
     RoomJoinedMessage,
     SendJitsiJwtMessage,
     ServerToAdminClientMessage,
@@ -355,6 +356,20 @@ export class SocketManager implements ZoneEventListener {
             );
         } catch (e) {
             console.error('An error occurred on "handleReportMessage"');
+            console.error(e);
+        }
+    }
+
+    async handleReportMapMessage(client: ExSocketInterface, reportMapMessage: ReportMapMessage) {
+        try {
+            await adminApi.reportMap(
+                reportMapMessage.getReportedroomurl(),
+                reportMapMessage.getReportcomment(),
+                client.userUuid,
+                client.roomId
+            );
+        } catch (e) {
+            console.error('An error occurred on "handleReportMapMessage"');
             console.error(e);
         }
     }

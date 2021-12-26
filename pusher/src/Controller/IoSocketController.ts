@@ -12,6 +12,7 @@ import {
     WebRtcSignalToServerMessage,
     PlayGlobalMessage,
     ReportPlayerMessage,
+    ReportMapMessage,
     QueryJitsiJwtMessage,
     SendUserMessage,
     ServerToClientMessage,
@@ -470,6 +471,8 @@ export class IoSocketController {
                     socketManager.emitPlayGlobalMessage(client, message.getPlayglobalmessage() as PlayGlobalMessage);
                 } else if (message.hasReportplayermessage()) {
                     socketManager.handleReportMessage(client, message.getReportplayermessage() as ReportPlayerMessage);
+                } else if (message.hasReportmapmessage()) {
+                    socketManager.handleReportMapMessage(client, message.getReportmapmessage() as ReportMapMessage);
                 } else if (message.hasQueryjitsijwtmessage()) {
                     socketManager.handleQueryJitsiJwtMessage(
                         client,
