@@ -126,12 +126,16 @@
         </h3>
         <section class="report-container-main" hidden={!expandedReportMap}>
             <p>Send a report message to the administrators of the world about this map. They may later ban the assembly.</p>
-            <label>
-                <span>Your message: </span>
-                <textarea type="text" class="nes-textarea" bind:value={reportMessage} />
-            </label>
-            <p hidden={reportErrorHidden}>Report message cannot to be empty.</p>
-            <button class="nes-btn is-error" on:click={submitReport}>Report this map</button>
+            <section>
+                <label>
+                    <span>Your message: </span>
+                    <textarea type="text" class="nes-textarea" bind:value={reportMessage} />
+                </label>
+            </section>
+            <section>
+                <p hidden={reportErrorHidden}>Report message cannot to be empty.</p>
+                <button class="nes-btn is-error" on:click={submitReport}>Report this map</button>
+            </section>
         </section>
     </section>
 </div>
