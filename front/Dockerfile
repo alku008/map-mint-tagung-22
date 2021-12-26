@@ -45,6 +45,8 @@ RUN PUSHER_URL=$PUSHER_URL ADMIN_URL=$ADMIN_URL MAPS_URL=$MAPS_URL UPLOADER_URL=
     MAX_USERNAME_LENGTH=$MAX_USERNAME_LENGTH MAX_PER_GROUP=$MAX_PER_GROUP DISABLE_NOTIFICATIONS=$DISABLE_NOTIFICATIONS \
     SKIP_RENDER_OPTIMIZATIONS=$SKIP_RENDER_OPTIMIZATIONS DISPLAY_TERMS_OF_USE=$DISPLAY_TERMS_OF_USE CONTACT_URL=$CONTACT_URL \
     yarn run build
+RUN sed -i 's/https:\/\/twemoji\.maxcdn\.com\/v\/13\.0\.0\//https:\/\/static\.rc3\.world\/contrib\/twemoji\//g' /usr/src/dist/js/main.*.js
+RUN sed -i 's/https:\/\/twemoji\.maxcdn\.com\/v\/13\.0\.0\//https:\/\/static\.rc3\.world\/contrib\/twemoji\//g' /usr/src/dist/js/main.*.js.map
 
 # final production image
 FROM nginx:mainline-alpine
