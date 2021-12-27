@@ -1,19 +1,13 @@
 <script lang="typescript">
     import { gameManager } from "../../Phaser/Game/GameManager";
     import { SelectCompanionScene, SelectCompanionSceneName } from "../../Phaser/Login/SelectCompanionScene";
-    import { menuIconVisiblilityStore, menuVisiblilityStore, userIsConnected } from "../../Stores/MenuStore";
+    import { menuIconVisiblilityStore, menuVisiblilityStore } from "../../Stores/MenuStore";
     import { selectCompanionSceneVisibleStore } from "../../Stores/SelectCompanionStore";
-    import { LoginScene, LoginSceneName } from "../../Phaser/Login/LoginScene";
-    import { loginSceneVisibleStore } from "../../Stores/LoginSceneStore";
     import { selectCharacterSceneVisibleStore } from "../../Stores/SelectCharacterStore";
     import { SelectCharacterScene, SelectCharacterSceneName } from "../../Phaser/Login/SelectCharacterScene";
-    import { connectionManager } from "../../Connexion/ConnectionManager";
-    import { PROFILE_URL } from "../../Enum/EnvironmentVariable";
-    import { localUserStore } from "../../Connexion/LocalUserStore";
     import { EnableCameraScene, EnableCameraSceneName } from "../../Phaser/Login/EnableCameraScene";
     import { enableCameraSceneVisibilityStore } from "../../Stores/MediaStore";
     import btnProfileSubMenuCamera from "../images/btn-menu-profile-camera.svg";
-    import btnProfileSubMenuIdentity from "../images/btn-menu-profile-identity.svg";
     import btnProfileSubMenuCompanion from "../images/btn-menu-profile-companion.svg";
     import Woka from "../Woka/Woka.svelte";
     import Companion from "../Companion/Companion.svelte";
@@ -29,26 +23,10 @@
         gameManager.leaveGame(SelectCompanionSceneName, new SelectCompanionScene());
     }
 
-    function openEditNameScene() {
-        disableMenuStores();
-        loginSceneVisibleStore.set(true);
-        gameManager.leaveGame(LoginSceneName, new LoginScene());
-    }
-
     function openEditSkinScene() {
         disableMenuStores();
         selectCharacterSceneVisibleStore.set(true);
         gameManager.leaveGame(SelectCharacterSceneName, new SelectCharacterScene());
-    }
-
-    function logOut() {
-        disableMenuStores();
-        loginSceneVisibleStore.set(true);
-        connectionManager.logout();
-    }
-
-    function getProfileUrl() {
-        return PROFILE_URL + `?token=${localUserStore.getAuthToken()}`;
     }
 
     function openEnableCameraScene() {
@@ -117,12 +95,6 @@
                 align-items: center;
                 flex-wrap: wrap;
                 margin-bottom: 20px;
-
-                iframe {
-                    width: 100%;
-                    height: 50vh;
-                    border: none;
-                }
 
                 button {
                     height: 50px;

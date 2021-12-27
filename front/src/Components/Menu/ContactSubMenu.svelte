@@ -1,14 +1,4 @@
 <script lang="ts">
-    function goToGettingStarted() {
-        const sparkHost = "https://workadventu.re/getting-started";
-        window.open(sparkHost, "_blank");
-    }
-
-    function goToBuildingMap() {
-        const sparkHost = "https://workadventu.re/map-building/";
-        window.open(sparkHost, "_blank");
-    }
-
     import { contactPageStore } from "../../Stores/MenuStore";
 </script>
 
