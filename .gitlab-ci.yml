@@ -6,6 +6,9 @@ stages:
 
 
 build_protobuf:
+  except:
+    - xce
+    - web
   stage: prepare
   image:
     name: node:14-buster-slim
@@ -27,6 +30,9 @@ build_protobuf:
 
 
 test:
+  except:
+    - xce
+    - web
   stage: test
   image:
     name: node:14-buster-slim
