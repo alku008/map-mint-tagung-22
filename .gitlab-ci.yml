@@ -29,7 +29,7 @@ build_protobuf:
       - front/src/Messages
 
 
-test:
+.test_template: &test_template
   except:
     - xce
     - web
@@ -44,6 +44,9 @@ test:
           - front/yarn.lock
       paths:
         - front/.yarn-cache/
+
+test_build:
+  <<: *test_template
   script:
     - cd front
     - yarn install --cache-folder .yarn-cache
@@ -51,9 +54,33 @@ test:
     - export PUSHER_URL="//localhost:8080"
     - export ADMIN_URL="//localhost:80"
     - yarn run build
+
+svelte_check:
+  <<: *test_template
+  script:
+    - cd front
+    - yarn install --cache-folder .yarn-cache
     - yarn run svelte-check
+
+lint:
+  <<: *test_template
+  script:
+    - cd front
+    - yarn install --cache-folder .yarn-cache
     - yarn run lint
+
+pretty_check:
+  <<: *test_template
+  script:
+    - cd front
+    - yarn install --cache-folder .yarn-cache
     - yarn run pretty-check
+
+test:
+  <<: *test_template
+  script:
+    - cd front
+    - yarn install --cache-folder .yarn-cache
     - yarn test
 
 
