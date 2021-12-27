@@ -209,6 +209,14 @@ export const HAIR_RESOURCES: BodyResourceDescriptionListInterface = {
     hair_72: { name: "hair_72", img: "resources/customisation/character_hairs/character_hairs71.png" },
     hair_73: { name: "hair_73", img: "resources/customisation/character_hairs/character_hairs72.png" },
     hair_74: { name: "hair_74", img: "resources/customisation/character_hairs/character_hairs73.png" },
+    hair_75: { name: "hair_75", img: "resources/customisation/character_hairs/character_hairs13_rainbow.png" },
+    hair_76: { name: "hair_76", img: "resources/customisation/character_hairs/character_hairs17_brown.png" },
+    hair_77: { name: "hair_77", img: "resources/customisation/character_hairs/character_hairs17_petrol.png" },
+    hair_78: { name: "hair_78", img: "resources/customisation/character_hairs/character_hairs21_grey.png" },
+    hair_79: { name: "hair_79", img: "resources/customisation/character_hairs/character_hairs24_blue.png" },
+    hair_80: { name: "hair_80", img: "resources/customisation/character_hairs/character_hairs40_petrol.png" },
+    hair_81: { name: "hair_81", img: "resources/customisation/character_hairs/character_hairs40_red.png" },
+    hair_82: { name: "hair_82", img: "resources/customisation/character_hairs/character_hairs40_ultramarine.png" },
 };
 
 export const CLOTHES_RESOURCES: BodyResourceDescriptionListInterface = {
