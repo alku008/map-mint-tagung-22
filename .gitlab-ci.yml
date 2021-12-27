@@ -174,7 +174,7 @@ build_staging:
 build_prod:
   <<: *build_template
   only:
-    - web
+    - xce
   variables:
       DOCKER_TAG: prod
       PUSHER_URL: $PUSHER_URL_PROD
