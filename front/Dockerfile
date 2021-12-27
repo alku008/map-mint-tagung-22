@@ -37,6 +37,7 @@ ARG DISABLE_NOTIFICATIONS
 ARG SKIP_RENDER_OPTIMIZATIONS
 ARG DISPLAY_TERMS_OF_USE
 ARG CONTACT_URL
+ARG COMMIT_SHA
 
 RUN ./templater.sh
 RUN PUSHER_URL=$PUSHER_URL ADMIN_URL=$ADMIN_URL MAPS_URL=$MAPS_URL UPLOADER_URL=$UPLOADER_URL START_ROOM_URL=$START_ROOM_URL \
@@ -52,3 +53,4 @@ RUN sed -i 's/https:\/\/twemoji\.maxcdn\.com\/v\/13\.0\.0\//https:\/\/static\.rc
 FROM nginx:mainline-alpine
 COPY front/nginx-vhost.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder2 /usr/src/dist /usr/share/nginx/html
+RUN mkdir -p /usr/share/nginx/html/.well-known && echo "Build: ${COMMIT_SHA} - $(date)" >  /usr/share/nginx/html/.well-known/build

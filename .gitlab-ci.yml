@@ -116,6 +116,7 @@ test:
     --build-arg=SKIP_RENDER_OPTIMIZATIONS=$SKIP_RENDER_OPTIMIZATIONS
     --build-arg=DISPLAY_TERMS_OF_USE=$DISPLAY_TERMS_OF_USE
     --build-arg=CONTACT_URL=$CONTACT_URL
+    --build-arg=COMMIT_SHA=${CI_COMMIT_SHA}
     
 build_dev:
   <<: *build_template
