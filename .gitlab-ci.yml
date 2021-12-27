@@ -108,7 +108,7 @@ test:
     --build-arg=JITSI_URL=$JITSI_URL
     --build-arg=STUN_SERVER=$STUN_SERVER
     --build-arg=TURN_SERVER=$TURN_SERVER
-    --build-arg=TURN_USER=$TURN_SERVER
+    --build-arg=TURN_USER=$TURN_USER
     --build-arg=TURN_PASSWORD=$TURN_PASSWORD
     --build-arg=MAX_USERNAME_LENGTH=$MAX_USERNAME_LENGTH
     --build-arg=MAX_PER_GROUP=$MAX_PER_GROUP
