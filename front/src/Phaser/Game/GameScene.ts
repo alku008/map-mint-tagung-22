@@ -1411,7 +1411,7 @@ ${escapedMessage}
             layoutManagerActionStore.addAction({
                 uuid: "roomAccessDenied",
                 type: "warning",
-                message: "This Exit is not (yet) valid. Try again later...",
+                message: "This Exit currently leads to NOWHERE. Try again later...",
                 callback: () => {
                     layoutManagerActionStore.removeAction("roomAccessDenied");
                 },
