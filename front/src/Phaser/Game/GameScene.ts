@@ -1411,7 +1411,7 @@ ${escapedMessage}
             layoutManagerActionStore.addAction({
                 uuid: "roomAccessDenied",
                 type: "warning",
-                message: "Room access denied. You don't have right to access on this room.",
+                message: "This Exit is not (yet) valid. Try again later...",
                 callback: () => {
                     layoutManagerActionStore.removeAction("roomAccessDenied");
                 },
