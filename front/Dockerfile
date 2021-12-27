@@ -48,9 +48,9 @@ RUN PUSHER_URL=$PUSHER_URL ADMIN_URL=$ADMIN_URL MAPS_URL=$MAPS_URL UPLOADER_URL=
     yarn run build
 RUN sed -i 's/https:\/\/twemoji\.maxcdn\.com\/v\/13\.0\.0\//https:\/\/static\.rc3\.world\/contrib\/twemoji\//g' /usr/src/dist/js/main.*.js
 RUN sed -i 's/https:\/\/twemoji\.maxcdn\.com\/v\/13\.0\.0\//https:\/\/static\.rc3\.world\/contrib\/twemoji\//g' /usr/src/dist/js/main.*.js.map
+RUN mkdir -p /usr/src/dist/.well-known && echo "<p>Build: ${COMMIT_SHA} - $(date)</p>" > /usr/src/dist/.well-known/build.html
 
 # final production image
 FROM nginx:mainline-alpine
 COPY front/nginx-vhost.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder2 /usr/src/dist /usr/share/nginx/html
-RUN mkdir -p /usr/share/nginx/html/.well-known && echo "Build: ${COMMIT_SHA} - $(date)" >  /usr/share/nginx/html/.well-known/build
