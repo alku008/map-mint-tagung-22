@@ -54,9 +54,7 @@
         </section>
     </div>
 
-    <div class="content">
-
-    </div>
+    <div class="content" />
 </div>
 
 <style lang="scss">

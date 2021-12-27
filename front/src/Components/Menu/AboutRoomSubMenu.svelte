@@ -121,11 +121,12 @@
                 </p>
             {/each}
         </section>
-        <h3 class="nes-pointer hoverable" on:click={toggleReportUI}>
-            Report this map
-        </h3>
+        <h3 class="nes-pointer hoverable" on:click={toggleReportUI}>Report this map</h3>
         <section class="report-container-main" hidden={!expandedReportMap}>
-            <p>Send a report message to the administrators of the world about this map. They may later ban the assembly.</p>
+            <p>
+                Send a report message to the administrators of the world about this map. They may later ban the
+                assembly.
+            </p>
             <section>
                 <label>
                     <span>Your message: </span>
