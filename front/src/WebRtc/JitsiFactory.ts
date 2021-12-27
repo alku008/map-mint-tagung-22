@@ -129,7 +129,7 @@ class JitsiFactory {
      * Slugifies the room name and prepends the room name with the instance
      */
     public getRoomName(roomName: string, instance: string): string {
-        return (roomName); //slugify removed to be able to have globally shared rooms at rc3_21
+        return roomName; //slugify removed to be able to have globally shared rooms at rc3_21
     }
 
     public start(
