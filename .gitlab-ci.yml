@@ -1,25 +1,54 @@
 stages:
+  - prepare
   - test
   - build
   - publish
 
-# test:
-#   stage: test
-#   image:
-#     name: node:14-buster-slim
-#   cache:
-#     - key:
-#         files:
-#           - yarn.lock
-#       paths:
-#         - .yarn-cache/
-#   script:
-#     - npm i -g cross-env
-#     - yarn install --cache-folder .yarn-cache
-#     - cd front
-#     - yarn run test
+
+build_protobuf:
+  stage: prepare
+  image:
+    name: node:14-buster-slim
+  cache:
+    - key:
+        files:
+          - messages/proto/messages.proto
+      paths:
+        - front/src/Messages
+  script:
+    - cd messages
+    - yarn install
+    - yarn run proto
+    - yarn run copy-to-front
+    - yarn run json-copy-to-front
+  artifacts:
+    paths:
+      - front/src/Messages
 
 
+test:
+  stage: test
+  image:
+    name: node:14-buster-slim
+  dependencies:
+    - build_protobuf
+  cache:
+    - key:
+        files:
+          - front/yarn.lock
+      paths:
+        - front/.yarn-cache/
+  script:
+    - cd front
+    - yarn install --cache-folder .yarn-cache
+    - ./templater.sh
+    - export PUSHER_URL="//localhost:8080"
+    - export ADMIN_URL="//localhost:80"
+    - yarn run build
+    - yarn run svelte-check
+    - yarn run lint
+    - yarn run pretty-check
+    - yarn test
 
 
 .build_template: &build_template
