@@ -122,6 +122,7 @@ message ClientToServerMessage {
     FollowConfirmationMessage followConfirmationMessage = 16;
     FollowAbortMessage followAbortMessage = 17;
     ReportMapMessage reportMapMessage = 18;
+    UserSettings userSettings = 19;
   }
 }
 
@@ -221,6 +222,17 @@ message ItemStateMessage {
   string stateJson = 2;
 }
 
+message UserSettings {
+  bool blockExternalContent = 1;
+  bool blockAmbientSounds = 2;
+  bool ignoreFollowRequests = 3;
+  bool silentMode = 4;
+  bool forceWebsiteTrigger = 5;
+  bool noAnimations = 6;
+  bool noVideo = 7;
+  string nickname = 8;
+}
+
 message RoomJoinedMessage {
   //repeated UserJoinedMessage user = 1;
   //repeated GroupUpdateMessage group = 2;
@@ -229,6 +241,7 @@ message RoomJoinedMessage {
   repeated string tag = 5;
   repeated VariableMessage variable = 6;
   string userRoomToken = 7;
+  UserSettings userSettings = 8;
 }
 
 message WebRtcStartMessage {
@@ -318,6 +331,7 @@ message ServerToClientMessage {
     FollowRequestMessage followRequestMessage = 21;
     FollowConfirmationMessage followConfirmationMessage = 22;
     FollowAbortMessage followAbortMessage = 23;
+    UserSettings userSettings = 24;
   }
 }
 

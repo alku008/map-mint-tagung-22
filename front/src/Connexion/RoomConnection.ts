@@ -222,11 +222,24 @@ export class RoomConnection implements RoomConnection {
                         );
                     }
                 }
-                this.setSilent(localUserStore.getAlwaysSilent());
 
                 this.userId = roomJoinedMessage.getCurrentuserid();
                 this.tags = roomJoinedMessage.getTagList();
                 this._userRoomToken = roomJoinedMessage.getUserroomtoken();
+
+                // Set user settings from hub
+                const userSettings = roomJoinedMessage.getUsersettings();
+                if (userSettings) {
+                    localUserStore.setBlockExternalContent(userSettings.getBlockexternalcontent());
+                    localUserStore.setBlockAudio(userSettings.getBlockambientsounds());
+                    localUserStore.setIgnoreFollowRequests(userSettings.getIgnorefollowrequests());
+                    localUserStore.setAlwaysSilent(userSettings.getSilentmode());
+                    localUserStore.setForceCowebsiteTrigger(userSettings.getForcewebsitetrigger());
+                    localUserStore.setNoVideo(userSettings.getNovideo());
+                    localUserStore.setName(userSettings.getNickname());
+                }
+
+                this.setSilent(localUserStore.getAlwaysSilent());
 
                 if (localUserStore.getNoVideo()) {
                     requestedCameraState.disableWebcam();
