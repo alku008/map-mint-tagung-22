@@ -63,6 +63,7 @@
     let expandedReportMap = false;
     let reportMessage = "";
     let reportErrorHidden = true;
+    let reportSuccessHidden = true;
 
     function toggleReportUI() {
         expandedReportMap = !expandedReportMap;
@@ -79,6 +80,8 @@
         } else {
             reportErrorHidden = true;
             gameManager.getCurrentGameScene().connection?.emitReportMapMessage(gameScene.roomUrl, reportMessage);
+            reportMessage = "";
+            reportSuccessHidden = false;
         }
     }
 </script>
@@ -135,6 +138,7 @@
             </section>
             <section>
                 <p hidden={reportErrorHidden}>Report message cannot to be empty.</p>
+                <p hidden={reportSuccessHidden}>Your report was sent. Thank you for being vigilant!</p>
                 <button class="nes-btn is-error" on:click={submitReport}>Report this map</button>
             </section>
         </section>
