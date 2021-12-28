@@ -13,6 +13,7 @@
     let forceCowebsiteTrigger: boolean = localUserStore.getForceCowebsiteTrigger();
     let ignoreFollowRequests: boolean = localUserStore.getIgnoreFollowRequests();
     let alwaysSilent: boolean = localUserStore.getAlwaysSilent();
+    let disableAnimations: boolean = localUserStore.getDisableAnimations();
     let valueGame: number = localUserStore.getGameQualityValue();
     let valueVideo: number = localUserStore.getVideoQualityValue();
     let previewValueGame = valueGame;
@@ -82,6 +83,10 @@
         const silentZone = scene.isSilentZone();
         scene.connection?.setSilent(alwaysSilent || silentZone);
         isSilentStore.set(alwaysSilent || silentZone);
+    }
+
+    function changeDisableAnimations() {
+        localUserStore.setDisableAnimations(disableAnimations);
     }
 
     function closeMenu() {
@@ -174,6 +179,15 @@
                 on:change={changeAlwaysSilent}
             />
             <span>Silent mode (disable proximity chat)</span>
+        </label>
+        <label>
+            <input
+                type="checkbox"
+                class="nes-checkbox is-dark"
+                bind:checked={disableAnimations}
+                on:change={changeDisableAnimations}
+            />
+            <span>Disable tile animations</span>
         </label>
     </section>
 </div>
