@@ -502,7 +502,7 @@ export class GameScene extends DirtyScene {
                     if (object.text) {
                         TextUtils.createTextFromITiledMapObject(this, object);
                     }
-                    if (object.type === "website") {
+                    if (object.type === "website" && !localUserStore.getBlockExternalContent()) {
                         // Let's load iframes in the map
                         const url = PropertyUtils.mustFindStringProperty(
                             GameMapProperties.URL,
@@ -774,6 +774,9 @@ export class GameScene extends DirtyScene {
                  * Triggered when we receive the JWT token to connect to Jitsi
                  */
                 this.connection.onStartJitsiRoom((jwt, room) => {
+                    if (localUserStore.getBlockExternalContent()) {
+                        return;
+                    }
                     this.startJitsi(room, jwt);
                 });
 
@@ -925,6 +928,9 @@ export class GameScene extends DirtyScene {
         });
 
         this.gameMap.onPropertyChange(GameMapProperties.JITSI_ROOM, (newValue, oldValue, allProps) => {
+            if (localUserStore.getBlockExternalContent()) {
+                return;
+            }
             if (newValue === undefined) {
                 layoutManagerActionStore.removeAction("jitsi");
                 this.stopJitsi();
