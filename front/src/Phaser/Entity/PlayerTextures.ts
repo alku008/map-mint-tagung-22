@@ -355,8 +355,8 @@ export const HATS_RESOURCES: BodyResourceDescriptionListInterface = {
     purple_hat: { name: "purple_hat", img: "resources/customisation/character_hats/purple_hat.png" },
     diving_mask1: { name: "diving_mask1", img: "resources/customisation/character_hats/diving_mask1.png" },
     accessory_mask: { name: "accessory_mask", img: "resources/customisation/character_accessories/mask.png" },
-    sign_dont_talk: { name: "sign-dont-talk", img: "resources/customisation/character_accessories/sign-dont-talk.png" },
-    sign_talk: { name: "sign-talk", img: "resources/customisation/character_accessories/sign-talk.png" },
+    sign_dont_talk: { name: "sign_dont_talk", img: "resources/customisation/character_accessories/sign-dont-talk.png" },
+    sign_talk: { name: "sign_talk", img: "resources/customisation/character_accessories/sign-talk.png" },
 };
 
 export const ACCESSORIES_RESOURCES: BodyResourceDescriptionListInterface = {
@@ -403,11 +403,11 @@ export const ACCESSORIES_RESOURCES: BodyResourceDescriptionListInterface = {
     },
     accessory_ring: { name: "accessory_ring", img: "resources/customisation/character_accessories/ring.png" },
     accessory_sign_dont_talk: {
-        name: "accessory_sign-dont-talk",
+        name: "accessory_sign_dont_talk",
         img: "resources/customisation/character_accessories/sign-dont-talk.png",
     },
     accessory_sign_talk: {
-        name: "accessory_sign-talk",
+        name: "accessory_sign_talk",
         img: "resources/customisation/character_accessories/sign-talk.png",
     },
 };
