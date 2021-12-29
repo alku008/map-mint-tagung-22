@@ -65,6 +65,7 @@ import { emoteEventStream } from "./EmoteEventStream";
 import { get } from "svelte/store";
 import { warningContainerStore } from "../Stores/MenuStore";
 import { followStateStore, followRoleStore, followUsersStore } from "../Stores/FollowStore";
+import { requestedCameraState } from "../Stores/MediaStore";
 import { localUserStore } from "./LocalUserStore";
 
 const manualPingDelay = 20000;
@@ -225,6 +226,12 @@ export class RoomConnection implements RoomConnection {
                 this.userId = roomJoinedMessage.getCurrentuserid();
                 this.tags = roomJoinedMessage.getTagList();
                 this._userRoomToken = roomJoinedMessage.getUserroomtoken();
+
+                if (localUserStore.getNoVideo()) {
+                    requestedCameraState.disableWebcam();
+                } else {
+                    requestedCameraState.enableWebcam();
+                }
 
                 this.dispatch(EventMessage.CONNECT, {
                     connection: this,
