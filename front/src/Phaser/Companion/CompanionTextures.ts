@@ -18,4 +18,8 @@ export const COMPANION_RESOURCES: CompanionResourceDescriptionInterface[] = [
     { name: "ClaymoreRoomba", img: "resources/companions/Claymore_Roomba.png", behaviour: "cat" },
     { name: "Smiley", img: "resources/companions/Smiley.png", behaviour: "cat" },
     { name: "blauhai", img: "resources/companions/blauhai3.png", behaviour: "cat" },
+    { name: "champ1", img: "resources/companions/littlechamp.png", behaviour: "cat" },
+    { name: "champ2", img: "resources/companions/littlechamp2.png", behaviour: "cat" },
+    { name: "champ3", img: "resources/companions/littlechamp3.png", behaviour: "cat" },
+    { name: "champ4", img: "resources/companions/littlechamp4.png", behaviour: "cat" },
 ];
