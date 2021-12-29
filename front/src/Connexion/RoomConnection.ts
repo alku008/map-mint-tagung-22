@@ -39,6 +39,7 @@ import {
     VariableMessage,
     ErrorMessage,
     PlayerDetailsUpdatedMessage,
+    UserSettings,
 } from "../Messages/generated/messages_pb";
 
 import type { UserSimplePeerInterface } from "../WebRtc/SimplePeer";
@@ -834,6 +835,21 @@ export class RoomConnection implements RoomConnection {
         message.setFollower(isLeader ? 0 : this.userId);
         const clientToServerMessage = new ClientToServerMessage();
         clientToServerMessage.setFollowabortmessage(message);
+        this.socket.send(clientToServerMessage.serializeBinary().buffer);
+    }
+
+    public pushUserSettings(): void {
+        const userSettingsMessage = new UserSettings();
+        userSettingsMessage.setBlockexternalcontent(localUserStore.getBlockExternalContent());
+        userSettingsMessage.setBlockambientsounds(localUserStore.getBlockAudio());
+        userSettingsMessage.setIgnorefollowrequests(localUserStore.getIgnoreFollowRequests());
+        userSettingsMessage.setSilentmode(localUserStore.getAlwaysSilent());
+        userSettingsMessage.setForcewebsitetrigger(localUserStore.getForceCowebsiteTrigger());
+        userSettingsMessage.setNoanimations(localUserStore.getDisableAnimations());
+        userSettingsMessage.setNovideo(localUserStore.getNoVideo());
+
+        const clientToServerMessage = new ClientToServerMessage();
+        clientToServerMessage.setUsersettings(userSettingsMessage);
         this.socket.send(clientToServerMessage.serializeBinary().buffer);
     }
 

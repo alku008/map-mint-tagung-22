@@ -14,6 +14,7 @@
     import { LayoutMode } from "../WebRtc/LayoutManager";
     import { peerStore } from "../Stores/PeerStore";
     import { onDestroy } from "svelte";
+    import { gameManager } from "../Phaser/Game/GameManager";
 
     let camInstructionsVisible = false;
 
@@ -59,7 +60,7 @@
     function unblockCamera() {
         localUserStore.setNoVideo(false);
         requestedCameraState.enableWebcam();
-        // TODO: Push new state to hub
+        gameManager.getCurrentGameScene().connection?.pushUserSettings();
         camInstructionsVisible = false;
     }
 

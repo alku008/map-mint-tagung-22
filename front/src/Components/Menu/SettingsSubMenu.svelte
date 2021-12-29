@@ -22,6 +22,10 @@
     let previousVideoQuality = videoQuality;
     let oldBlockExternalContent = blockExternalContent;
 
+    function pushUserSettings() {
+        gameManager.getCurrentGameScene().connection?.pushUserSettings();
+    }
+
     function saveSettings() {
         let reload = false;
 
@@ -41,6 +45,7 @@
             oldBlockExternalContent = blockExternalContent;
             localUserStore.setBlockExternalContent(blockExternalContent);
             reload = true;
+            pushUserSettings();
         }
 
         if (reload) {
@@ -81,14 +86,17 @@
             audioManagerVisibilityStore.set(false);
         }
         localUserStore.setBlockAudio(blockAudio);
+        pushUserSettings();
     }
 
     function changeForceCowebsiteTrigger() {
         localUserStore.setForceCowebsiteTrigger(forceCowebsiteTrigger);
+        pushUserSettings();
     }
 
     function changeIgnoreFollowRequests() {
         localUserStore.setIgnoreFollowRequests(ignoreFollowRequests);
+        pushUserSettings();
     }
 
     function changeAlwaysSilent() {
@@ -97,6 +105,7 @@
         const silentZone = scene.isSilentZone();
         scene.connection?.setSilent(alwaysSilent || silentZone);
         isSilentStore.set(alwaysSilent || silentZone);
+        pushUserSettings();
     }
 
     function changeNoVideo() {
@@ -104,10 +113,12 @@
         if (noVideo) {
             requestedCameraState.disableWebcam();
         }
+        pushUserSettings();
     }
 
     function changeDisableAnimations() {
         localUserStore.setDisableAnimations(disableAnimations);
+        pushUserSettings();
     }
 </script>
 
