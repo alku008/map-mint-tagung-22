@@ -2,6 +2,7 @@
     import { localUserStore } from "../../Connexion/LocalUserStore";
     import { isSilentStore, videoConstraintStore } from "../../Stores/MediaStore";
     import { audioManagerFileStore, audioManagerVisibilityStore } from "../../Stores/AudioManagerStore";
+    import { requestedCameraState } from "../../Stores/MediaStore";
     import { HtmlUtils } from "../../WebRtc/HtmlUtils";
     import { isMobile } from "../../Enum/EnvironmentVariable";
     import { gameManager } from "../../Phaser/Game/GameManager";
@@ -12,6 +13,7 @@
     let forceCowebsiteTrigger: boolean = localUserStore.getForceCowebsiteTrigger();
     let ignoreFollowRequests: boolean = localUserStore.getIgnoreFollowRequests();
     let alwaysSilent: boolean = localUserStore.getAlwaysSilent();
+    let noVideo: boolean = localUserStore.getNoVideo();
     let disableAnimations: boolean = localUserStore.getDisableAnimations();
     let gameQuality: number = localUserStore.getGameQualityValue();
     let videoQuality: number = localUserStore.getVideoQualityValue();
@@ -95,6 +97,13 @@
         const silentZone = scene.isSilentZone();
         scene.connection?.setSilent(alwaysSilent || silentZone);
         isSilentStore.set(alwaysSilent || silentZone);
+    }
+
+    function changeNoVideo() {
+        localUserStore.setNoVideo(noVideo);
+        if (noVideo) {
+            requestedCameraState.disableWebcam();
+        }
     }
 
     function changeDisableAnimations() {
@@ -191,6 +200,10 @@
                 on:change={changeAlwaysSilent}
             />
             <span>Silent mode (disable proximity chat)</span>
+        </label>
+        <label>
+            <input type="checkbox" class="nes-checkbox is-dark" bind:checked={noVideo} on:change={changeNoVideo} />
+            <span>Disable camera</span>
         </label>
         <label>
             <input
