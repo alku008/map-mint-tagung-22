@@ -118,6 +118,11 @@
 
     function changeDisableAnimations() {
         localUserStore.setDisableAnimations(disableAnimations);
+        if (disableAnimations) {
+            gameManager.getCurrentGameScene().animatedTiles.pause();
+        } else {
+            gameManager.getCurrentGameScene().animatedTiles.resume();
+        }
         pushUserSettings();
     }
 </script>

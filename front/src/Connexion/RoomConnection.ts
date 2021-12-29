@@ -326,6 +326,11 @@ export class RoomConnection implements RoomConnection {
                     audioManagerFileStore.unloadAudio();
                     audioManagerVisibilityStore.set(false);
                 }
+                if (userSettings.getNoanimations()) {
+                    gameManager.getCurrentGameScene().animatedTiles.pause();
+                } else {
+                    gameManager.getCurrentGameScene().animatedTiles.resume();
+                }
             } else if (message.hasErrormessage()) {
                 const errorMessage = message.getErrormessage() as ErrorMessage;
                 console.error("An error occurred server side: " + errorMessage.getMessage());
