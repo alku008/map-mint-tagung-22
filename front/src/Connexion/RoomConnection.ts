@@ -69,6 +69,8 @@ import { warningContainerStore } from "../Stores/MenuStore";
 import { followStateStore, followRoleStore, followUsersStore } from "../Stores/FollowStore";
 import { requestedCameraState } from "../Stores/MediaStore";
 import { localUserStore } from "./LocalUserStore";
+import { audioManagerFileStore, audioManagerVisibilityStore } from "../Stores/AudioManagerStore";
+import { gameManager } from "../Phaser/Game/GameManager";
 
 const manualPingDelay = 20000;
 
@@ -305,6 +307,24 @@ export class RoomConnection implements RoomConnection {
                     followUsersStore.stopFollowing();
                 } else {
                     followUsersStore.removeFollower(abortMessage.getFollower());
+                }
+            } else if (message.hasUsersettings()) {
+                const userSettings = message.getUsersettings() as UserSettings;
+                localUserStore.setBlockExternalContent(userSettings.getBlockexternalcontent());
+                localUserStore.setBlockAudio(userSettings.getBlockambientsounds());
+                localUserStore.setIgnoreFollowRequests(userSettings.getIgnorefollowrequests());
+                localUserStore.setAlwaysSilent(userSettings.getSilentmode());
+                localUserStore.setForceCowebsiteTrigger(userSettings.getForcewebsitetrigger());
+                localUserStore.setDisableAnimations(userSettings.getNoanimations());
+                localUserStore.setNoVideo(userSettings.getNovideo());
+                if (userSettings.getNovideo()) {
+                    requestedCameraState.disableWebcam();
+                }
+                const silentZone = gameManager.getCurrentGameScene().isSilentZone();
+                this.setSilent(userSettings.getSilentmode() || silentZone);
+                if (userSettings.getBlockambientsounds()) {
+                    audioManagerFileStore.unloadAudio();
+                    audioManagerVisibilityStore.set(false);
                 }
             } else if (message.hasErrormessage()) {
                 const errorMessage = message.getErrormessage() as ErrorMessage;
