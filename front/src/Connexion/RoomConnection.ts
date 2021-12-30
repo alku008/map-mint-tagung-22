@@ -310,6 +310,7 @@ export class RoomConnection implements RoomConnection {
                 }
             } else if (message.hasUsersettings()) {
                 const userSettings = message.getUsersettings() as UserSettings;
+                const reload = localUserStore.getBlockExternalContent() !== userSettings.getBlockexternalcontent();
                 localUserStore.setBlockExternalContent(userSettings.getBlockexternalcontent());
                 localUserStore.setBlockAudio(userSettings.getBlockambientsounds());
                 localUserStore.setIgnoreFollowRequests(userSettings.getIgnorefollowrequests());
@@ -317,6 +318,7 @@ export class RoomConnection implements RoomConnection {
                 localUserStore.setForceCowebsiteTrigger(userSettings.getForcewebsitetrigger());
                 localUserStore.setDisableAnimations(userSettings.getNoanimations());
                 localUserStore.setNoVideo(userSettings.getNovideo());
+                localUserStore.setName(userSettings.getNickname());
                 if (userSettings.getNovideo()) {
                     requestedCameraState.disableWebcam();
                 }
@@ -330,6 +332,9 @@ export class RoomConnection implements RoomConnection {
                     gameManager.getCurrentGameScene().animatedTiles.pause();
                 } else {
                     gameManager.getCurrentGameScene().animatedTiles.resume();
+                }
+                if (reload) {
+                    window.location.reload();
                 }
             } else if (message.hasErrormessage()) {
                 const errorMessage = message.getErrormessage() as ErrorMessage;
