@@ -22,6 +22,5 @@ export const COMPANION_RESOURCES: CompanionResourceDescriptionInterface[] = [
     { name: "champ2", img: "resources/companions/littlechamp2.png", behaviour: "cat" },
     { name: "champ3", img: "resources/companions/littlechamp3.png", behaviour: "cat" },
     { name: "champ4", img: "resources/companions/littlechamp4.png", behaviour: "cat" },
-    { name: "bobomb", img: "resources/companions/bobomb.png", behaviour: "cat" },
     { name: "fairydust", img: "resources/companions/fairydust.png", behaviour: "cat" },
 ];
